@@ -1,25 +1,6 @@
 import time
-
-
-def binary_search(names, dup):
-    if len(names) == 0:
-        return -1
-    if names[0] > dup:
-        return -1
-    if names[len(names) - 1] < dup:
-        return -1
-    low = 0
-    high = len(names)-1
-    middle = int((high-low)/2 + low)
-    while high > low:
-        middle = int((high + low)/2)
-        if dup == names[middle]:
-            return middle
-        elif dup < names[middle]:
-            high = middle
-        else:
-            low = middle + 1
-    return -1
+from collections import defaultdict
+from binary_search_tree import BinarySearchTree
 
 
 start_time = time.process_time()
@@ -34,23 +15,37 @@ f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
 
+# Runtime Complexity = O(n^2)
 
-names_1.sort()
-for names_2 in names_2:
-    if binary_search(names_1, names_2):
-        duplicates.append(names_2)
-
-# Replace the nested for loops below with your improvements
 # for name_1 in names_1:
 #     for name_2 in names_2:
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
-# a = 0
-# while a < len(names_1):
-#     # for name_2 in names_2:
-#     if names_1[a] in names_2:
-#         duplicates.append(names_1[a])
-#     a += 1
+
+# apparently the most efficient. with time complexity of O(1)
+# dict = defaultdict(bool)
+# for name_1 in names_1:
+#     dict[name_1] = True
+
+# for name_2 in names_2:
+#     if dict[name_2]:
+#         duplicates.append(name_2)
+
+# set1 = set(names_1)
+# set2 = set(names_2)
+
+# set_intersect = list(set1.intersection(set2))
+
+# duplicates = [x for x in set_intersect]
+
+
+bst = BinarySearchTree(names_1[0])
+for name_1 in names_1:
+    bst.insert(name_1)
+
+for name_2 in names_2:
+    if bst.contains(name_2):
+        duplicates.append(name_2)
 
 
 end_time = time.process_time()
