@@ -21,9 +21,11 @@ duplicates = []  # Return the list of duplicates in this data structure
 #             duplicates.append(name_1)
 a = 0
 while a < len(names_1):
+    # for name_2 in names_2:
     if names_1[a] in names_2:
         duplicates.append(names_1[a])
     a += 1
+
 
 end_time = process_time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
