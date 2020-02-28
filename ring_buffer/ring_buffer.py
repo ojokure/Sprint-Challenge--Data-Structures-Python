@@ -6,6 +6,7 @@ class RingBuffer:
         self.capacity = capacity
         self.current = None
         self.storage = DoublyLinkedList()
+        self.size = 0
 
     def append(self, item):
         pass
